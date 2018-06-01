@@ -1,2 +1,3 @@
-include 'cloud-config-servier'
 include 'cloud-config-client'
+include 'cloud-config-servier'
+include 'cloud-eureka-server'
