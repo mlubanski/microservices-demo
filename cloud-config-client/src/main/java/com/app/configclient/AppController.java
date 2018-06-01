@@ -6,6 +6,9 @@ import org.springframework.retry.annotation.Retryable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.HashMap;
+import java.util.Map;
+
 @RestController
 @RefreshScope //Wstrzykniecie aktualnej wartosci, endpoint /actuator/refresh
 //refresh mozna wywolac przez:
@@ -18,21 +21,28 @@ public class AppController {
 	private String authorName;
 	@Value ("${author.surname}")
 	private String authorSurname;
-	@Value ("${app.specific.config.key}")
-	private String key;
-	@Value ("${app.specific.config.encrypted.key}")
-	private String encryptedKey;
-	@Value ("${cannotoverride}")
-	private String cannotoverride;
+	@Value ("${encryptedvalue}")
+	private String encryptedvalue;
+	@Value ("${cannotoverrride}")
+	private String cannotoverrride;
+	@Value ("${allowappoverride}")
+	private String allowappoverride;
 
 
 
 
 	@RequestMapping("/action")
-	public String action() {
-		
-		return authorName + " " + authorSurname + " " + key + " " + encryptedKey + " " + cannotoverride;
-//		return "hello";
+	public Map<String, String> action() {
+		Map<String, String> result = new HashMap<>();
+
+		result.put("authorName", authorName);
+		result.put("authorSurname", authorSurname);
+		result.put("encryptedvalue", encryptedvalue);
+		result.put("allowappoverride", allowappoverride);
+		result.put("cannotoverrride", cannotoverrride);
+
+		return result;
+//		return authorName + " " + authorSurname + " " + key + " " + encryptedKey + " " + cannotoverride;
 	}
 
 }
