@@ -2,7 +2,6 @@ package com.app.configclient;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
-import org.springframework.retry.annotation.Retryable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -10,11 +9,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 @RestController
-@RefreshScope //Wstrzykniecie aktualnej wartosci, endpoint /actuator/refresh
-//refresh mozna wywolac przez:
-// - orkiestracje (np. mesos sam to ogarnia!)
+//enables injecting of properties from server config by calling endpoint /actuator/refresh which is usually called by:
+// - orchestration (e.g. mesos is taking care about it!)
 // - git hook + curl
-// - plugin gita + curl
+// - jenkins plugin + curl
+@RefreshScope
 public class AppController {
 	
 	@Value ("${author.name}")
