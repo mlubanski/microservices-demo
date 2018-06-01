@@ -22,13 +22,16 @@ public class AppController {
 	private String key;
 	@Value ("${app.specific.config.encrypted.key}")
 	private String encryptedKey;
+	@Value ("${cannotoverride}")
+	private String cannotoverride;
+
 
 
 
 	@RequestMapping("/action")
 	public String action() {
 		
-		return authorName + " " + authorSurname + " " + key + " " + encryptedKey;
+		return authorName + " " + authorSurname + " " + key + " " + encryptedKey + " " + cannotoverride;
 //		return "hello";
 	}
 
