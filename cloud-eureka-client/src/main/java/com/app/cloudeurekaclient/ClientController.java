@@ -23,6 +23,9 @@ public class ClientController {
 	@Value ("${allowappoverride}")
 	private String allowappoverride;
 
+	@Value ("${server.port}")
+	private String port;
+
 	@RequestMapping("/data")
 	public Map<String, String> info() {
 		Map<String, String> result = new HashMap<>();
@@ -34,5 +37,10 @@ public class ClientController {
 		result.put("cannotoverrride", cannotoverrride);
 
 		return result;
+	}
+
+	@RequestMapping("/port")
+	public String port() {
+		return port();
 	}
 }
