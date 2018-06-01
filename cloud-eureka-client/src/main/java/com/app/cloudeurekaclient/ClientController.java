@@ -41,6 +41,6 @@ public class ClientController {
 
 	@RequestMapping("/port")
 	public String port() {
-		return port();
+		return port;
 	}
 }
