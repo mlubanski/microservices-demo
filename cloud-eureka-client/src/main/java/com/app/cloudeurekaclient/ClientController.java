@@ -8,10 +8,6 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.HashMap;
 import java.util.Map;
 
-//enables injecting of properties from server config by calling endpoint /actuator/refresh which is usually called by:
-// - orchestration (e.g. mesos is taking care about it!)
-// - git hook + curl
-// - jenkins plugin + curl
 @RefreshScope
 @RestController
 public class ClientController {
