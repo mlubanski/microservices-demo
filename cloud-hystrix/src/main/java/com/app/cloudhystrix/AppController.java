@@ -15,7 +15,6 @@ import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixProperty;
 
 @RestController
-@EnableHystrix
 @RefreshScope
 public class AppController {
 
@@ -36,11 +35,8 @@ public class AppController {
 	@HystrixCommand(fallbackMethod = "failure", commandProperties = {
 			@HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds", value = "400") })
 	public String info(@PathVariable long time) throws InterruptedException {
-		
 		Thread.sleep(time);
 		return this.rest.getForObject(zuulUrl + eurekaClientPath + "/port", String.class);
-		
-		
 	}
 
 	//when @HystrixCommand is without commandProperties than 'public String failure()' will have no argument
