@@ -65,11 +65,11 @@
 			onDelete="CASCADE" onUpdate="CASCADE" />
 	</changeSet>
 	
-	<changeSet author="mlubanski" id="1530359147-4" runOnChange="true" context="dev">
+	<changeSet author="mlubanski" id="1530359147-4" runOnChange="true" context="dev" >
 		<sql>
 			DELETE FROM LIBRARY;
 		</sql>
-		<loadData tableName="LIBRARY" file="db/data/library.csv" >
+		<loadData tableName="LIBRARY" file="data/library.csv" relativeToChangelogFile="true">
 			<column name="ID" type="NUMERIC" />
 			<column name="NAME" type="STRING" />
 		</loadData>
@@ -79,7 +79,7 @@
 		<sql>
 			DELETE FROM BOOK;
 		</sql>
-		<loadData tableName="BOOK" file="db/data/book.csv">
+		<loadData tableName="BOOK" file="data/book.csv" relativeToChangelogFile="true">
 			<column name="ID" type="NUMERIC" />
 			<column name="LIBRARY_ID" type="NUMERIC" />
 			<column name="NAME" type="STRING" />
