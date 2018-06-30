@@ -1,10 +1,10 @@
 package com.example.demo.library;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import org.assertj.core.util.Maps;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,7 +27,9 @@ public class BookLibraryResource {
 	
 	@RequestMapping(method=RequestMethod.GET)
 	public Map<String, Boolean> isBookAvailable(@RequestParam String book) {
-		return Maps.newHashMap("isBookAvailable", library.isBookAvailable(book));
+		Map<String, Boolean> result = new HashMap<>();
+		result.put("isAvailable", library.isBookAvailable(book));
+		return result;
 	}
 	
 	@RequestMapping(path="/lend", method=RequestMethod.GET)

@@ -1,8 +1,8 @@
-package com.example.demo.library;
+package com.example.demo;
 
+import java.util.HashMap;
 import java.util.Map;
 
-import org.assertj.core.util.Maps;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,7 +16,8 @@ public class RestResponseEntityExceptionHandler extends ResponseEntityExceptionH
  
     @ExceptionHandler(value={ IllegalArgumentException.class, IllegalStateException.class })
     protected ResponseEntity<Object> handleConflict(RuntimeException ex, WebRequest request) {
-        Map<String, String> errorBody = Maps.newHashMap("error", ex.getMessage());
+        Map<String, String> errorBody = new HashMap<>();
+        errorBody.put("error", ex.getMessage());
         return handleExceptionInternal(ex, errorBody, new HttpHeaders(), HttpStatus.CONFLICT, request);
     }
 }
