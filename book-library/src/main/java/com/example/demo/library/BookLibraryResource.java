@@ -6,9 +6,11 @@ import java.util.Set;
 
 import org.assertj.core.util.Maps;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -29,11 +31,13 @@ public class BookLibraryResource {
 	}
 	
 	@RequestMapping(path="/lend", method=RequestMethod.GET)
+	@ResponseStatus(value = HttpStatus.OK)
 	public void lendBook(@RequestParam String book, @RequestParam String person) {
 		library.lend(book, person);
 	}
 	
 	@RequestMapping(path="/return", method=RequestMethod.GET)
+	@ResponseStatus(value = HttpStatus.OK)
 	public void returnBook(@RequestParam String book, @RequestParam String person) {
 		library.returnBook(book, person);
 	}
