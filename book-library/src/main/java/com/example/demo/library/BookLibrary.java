@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 public class BookLibrary {
 	
@@ -24,7 +25,7 @@ public class BookLibrary {
 		books.put(book, bookCount-1);
 	}
 	
-	private boolean isBookAvailable(String book) {
+	public boolean isBookAvailable(String book) {
 		return books.containsKey(book) && books.get(book) > 0;
 	}
 
@@ -69,5 +70,9 @@ public class BookLibrary {
 			return false;
 		}
 		return  lendedBooks.get(borrower).indexOf(book) != -1;
+	}
+
+	public Set<String> getLibraryBooks() {
+		return books.keySet();
 	}
 }
