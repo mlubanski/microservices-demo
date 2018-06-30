@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog 
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd
+        				http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+	<changeSet id="1530359147-1" author="mlubanski">
+		<createTable tableName="LIBRARY">
+			<column name="ID" type="int" autoIncrement="true">
+				<constraints primaryKey="true" nullable="false" />
+			</column>
+			<column name="NAME" type="varchar(255)">
+				<constraints nullable="false" />
+			</column>
+		</createTable>
+	</changeSet>
+
+	<changeSet id="1530359147-2" author="mlubanski">
+		<createTable tableName="BOOK">
+			<column name="ID" type="int" autoIncrement="true">
+				<constraints primaryKey="true" nullable="false" />
+			</column>
+			<column name="LIBRARY_ID" type="int">
+				<constraints nullable="false" />
+			</column>
+			<column name="NAME" type="varchar(255)">
+				<constraints nullable="false" />
+			</column>
+		</createTable>
+		<addForeignKeyConstraint constraintName="BOOK_LIBRARY_FK"
+			baseTableName="BOOK" baseColumnNames="LIBRARY_ID"
+			referencedTableName="LIBRARY" referencedColumnNames="ID"
+			onDelete="RESTRICT" onUpdate="CASCADE"  />
+	</changeSet>
+
+	<changeSet id="1530359147-3" author="mlubanski">
+		<createTable tableName="BOOK_LENDING_HISTORY">
+			<column name="ID" type="int" autoIncrement="true">
+				<constraints primaryKey="true" nullable="false" />
+			</column>
+				<column name="LIBRARY_ID" type="int">
+				<constraints nullable="false" />
+			</column>
+			<column name="BOOK_ID" type="int">
+				<constraints nullable="false" />
+			</column>
+			<column name="PERSON" type="varchar(255)">
+				<constraints nullable="false" />
+			</column>
+			<column name="LENDING_DATE" type="date" defaultValueComputed="now()">
+				<constraints nullable="false" />
+			</column>
+			<column name="RETURN_DATE" type="date" />
+		</createTable>
+		<addForeignKeyConstraint constraintName="BOOK_LENDING_HISTORY_BOOK_FK"
+			baseTableName="BOOK_LENDING_HISTORY" baseColumnNames="BOOK_ID"
+			referencedTableName="BOOK" referencedColumnNames="ID"  
+			onDelete="CASCADE" onUpdate="CASCADE" />
+		<addForeignKeyConstraint constraintName="BOOK_LENDING_HISTORY_LIBRARYFK"
+			baseTableName="BOOK_LENDING_HISTORY" baseColumnNames="LIBRARY_ID"
+			referencedTableName="LIBRARY" referencedColumnNames="ID"  
+			onDelete="CASCADE" onUpdate="CASCADE" />
+	</changeSet>
+	
+	<changeSet author="mlubanski" id="1530359147-4" runOnChange="true" context="dev">
+		<sql>
+			DELETE FROM LIBRARY;
+		</sql>
+		<loadData tableName="LIBRARY" file="db/data/library.csv" >
+			<column name="ID" type="NUMERIC" />
+			<column name="NAME" type="STRING" />
+		</loadData>
+	</changeSet>
+	
+	<changeSet author="mlubanski" id="1530359147-5" runOnChange="true" context="dev">
+		<sql>
+			DELETE FROM BOOK;
+		</sql>
+		<loadData tableName="BOOK" file="db/data/book.csv">
+			<column name="ID" type="NUMERIC" />
+			<column name="LIBRARY_ID" type="NUMERIC" />
+			<column name="NAME" type="STRING" />
+		</loadData>
+	</changeSet>
+</databaseChangeLog>
