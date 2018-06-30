@@ -17,6 +17,16 @@
 .idea/**/uiDesigner.xml
 .idea/**/dbnavigator.xml
 
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+*/bin/
+
 # Gradle
 .idea/**/gradle.xml
 .idea/**/libraries
@@ -51,3 +61,5 @@ gradle-app.setting
 
 # Cache of project
 .gradletasknamecache
+
+!gradle/wrapper/gradle-wrapper.jar
