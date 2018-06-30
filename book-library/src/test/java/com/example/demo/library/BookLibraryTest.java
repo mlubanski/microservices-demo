@@ -7,7 +7,6 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-
 public class BookLibraryTest {
 	
 	private static final String USER = "Jan Kowalski";
