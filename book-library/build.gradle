@@ -33,3 +33,9 @@ dependencies {
 	compile('io.springfox:springfox-swagger-ui:2.9.2')
 	compile('org.liquibase:liquibase-core:3.6.1')
 }
+
+test {
+    afterTest { desc, result -> 
+        logger.quiet "Executing test ${desc.name} [${desc.className}] with result: ${result.resultType}"
+    }
+}
