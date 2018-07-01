@@ -64,4 +64,10 @@ public class BookLibrary {
 	private boolean canReturnBook(String book, String borrower) {
 		return libraryRepository.canReturnBook(book, borrower);
 	}
+
+	void setLibraryRepository(LibraryRepository libraryRepository) {
+		this.libraryRepository = libraryRepository;
+	}
+	
+	
 }

@@ -18,6 +18,7 @@ public class BookLibraryTest {
 	@Before
 	public void init() {
 		library = new BookLibrary();
+		library.setLibraryRepository(new SimpleLibraryRepository());
 	}
 	
 	@Test(expected=IllegalStateException.class)
