@@ -18,6 +18,6 @@ public class RestResponseEntityExceptionHandler extends ResponseEntityExceptionH
     protected ResponseEntity<Object> handleConflict(RuntimeException ex, WebRequest request) {
         Map<String, String> errorBody = new HashMap<>();
         errorBody.put("error", ex.getMessage());
-        return handleExceptionInternal(ex, errorBody, new HttpHeaders(), HttpStatus.CONFLICT, request);
+        return handleExceptionInternal(ex, errorBody, new HttpHeaders(), HttpStatus.INTERNAL_SERVER_ERROR, request);
     }
 }

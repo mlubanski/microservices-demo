@@ -20,12 +20,12 @@ public class BookLibraryResource {
 	@Autowired
 	private BookLibrary library;
 	
-	@RequestMapping(path="books", method=RequestMethod.GET)
+	@RequestMapping(path="/books", method=RequestMethod.GET)
 	public Set<String> getLibraryBooks() {
 		return library.getLibraryBooks();
 	}
 	
-	@RequestMapping(method=RequestMethod.GET)
+	@RequestMapping(path="isAvailable", method=RequestMethod.GET)
 	public Map<String, Boolean> isBookAvailable(@RequestParam String book) {
 		Map<String, Boolean> result = new HashMap<>();
 		result.put("isAvailable", library.isBookAvailable(book));
