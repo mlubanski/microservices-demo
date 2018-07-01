@@ -1,8 +1,9 @@
-package com.example.demo.library.repository;
+package com.example.demo.library.entity;
 
 import java.util.Date;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -12,11 +13,12 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+@Entity
 @Table(name="BOOK_LENDING_HISTORY")
 public class BookLendingHistory {
 
 	@Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 	
 	@ManyToOne(fetch=FetchType.EAGER)

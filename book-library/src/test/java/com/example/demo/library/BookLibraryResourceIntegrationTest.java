@@ -3,7 +3,6 @@ package com.example.demo.library;
 import static org.hamcrest.collection.IsCollectionWithSize.hasSize;
 import static org.hamcrest.core.Is.is;
 import static org.hamcrest.core.IsCollectionContaining.hasItems;
-import static org.junit.Assert.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -19,7 +18,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import com.example.demo.BookLibraryApplication;;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(webEnvironment=SpringBootTest.WebEnvironment.MOCK, classes = BookLibraryApplication.class)
+@SpringBootTest(webEnvironment=SpringBootTest.WebEnvironment.DEFINED_PORT, classes = BookLibraryApplication.class)
 @AutoConfigureMockMvc
 //you can define test property source which will overwrite application properties
 //@TestPropertySource(locations = "classpath:application-integrationtest.properties")
