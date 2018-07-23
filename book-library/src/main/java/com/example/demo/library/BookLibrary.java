@@ -8,12 +8,15 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.demo.KafkaSender;
 import com.example.demo.library.entity.Book;
 import com.example.demo.library.repository.LibraryRepository;
 
 @Service
 public class BookLibrary {
 	
+	@Autowired
+	private KafkaSender kafkaSender;
 	@Autowired
 	private LibraryRepository libraryRepository;
 	
@@ -29,6 +32,7 @@ public class BookLibrary {
 		
 		Book book = removeBookFromShelf(bookName);
 		assignBookToLender(book, borrower);
+		kafkaSender.send(String.format("Lending book %s to %s", bookName, borrower));
 	}
 
 	private Book removeBookFromShelf(String book) {
